@@ -1,8 +1,12 @@
 # 🔒 SafeBruteForce
 
+[![RSR Compliance](https://img.shields.io/badge/RSR-Bronze-cd7f32)](RSR_COMPLIANCE.md)
+[![TPCF Perimeter](https://img.shields.io/badge/TPCF-P3%20Community-green)](MAINTAINERS.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Erlang/OTP](https://img.shields.io/badge/Erlang%2FOTP-26%2B-red.svg)](https://www.erlang.org/)
 [![LFE](https://img.shields.io/badge/LFE-2.1%2B-blue.svg)](https://lfe.io/)
+[![CI](https://img.shields.io/badge/CI-GitLab%20%7C%20GitHub-blue)](.github/workflows/ci.yml)
+[![Security](https://img.shields.io/badge/security.txt-RFC%209116-informational)](.well-known/security.txt)
 
 A **controlled, ethical brute-force utility** designed for authorized security testing and penetration testing engagements. Unlike traditional brute-force tools that flood systems recklessly, SafeBruteForce prioritizes safety, user control, and system preservation.
 
