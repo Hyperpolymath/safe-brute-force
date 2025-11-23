@@ -20,12 +20,13 @@
         rebar3 = pkgs.rebar3;
 
         # LFE-specific dependencies
-        lfe = pkgs.fetchFromGitHub {
-          owner = "lfe";
-          repo = "lfe";
-          rev = "v2.1.5";
-          sha256 = "sha256-PLACEHOLDER"; # Update with actual hash
-        };
+        # TODO: Fetch actual LFE package or add to nixpkgs
+        # lfe = pkgs.fetchFromGitHub {
+        #   owner = "lfe";
+        #   repo = "lfe";
+        #   rev = "v2.1.5";
+        #   sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # Need actual hash
+        # };
 
       in
       {
@@ -76,6 +77,14 @@
           buildPhase = ''
             # Set HOME for rebar3 cache
             export HOME=$TMPDIR
+
+            # Enable reproducible builds
+            export SOURCE_DATE_EPOCH=1
+            export LANG=C.UTF-8
+            export LC_ALL=C.UTF-8
+
+            # Disable timestamps in BEAM files (if possible)
+            # export ERL_COMPILER_OPTIONS="[deterministic]"
 
             # Compile the project
             rebar3 compile
