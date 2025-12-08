@@ -3,11 +3,8 @@
 [![RSR Compliance](https://img.shields.io/badge/RSR-Bronze-cd7f32)](RSR_COMPLIANCE.md)
 [![TPCF Perimeter](https://img.shields.io/badge/TPCF-P3%20Community-green)](MAINTAINERS.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Type Safety](https://img.shields.io/badge/Type%20Safety-60--80%25-orange)](docs/MULTI_LANGUAGE_ARCHITECTURE.md)
 [![Erlang/OTP](https://img.shields.io/badge/Erlang%2FOTP-26%2B-red.svg)](https://www.erlang.org/)
 [![LFE](https://img.shields.io/badge/LFE-2.1%2B-blue.svg)](https://lfe.io/)
-[![ReScript](https://img.shields.io/badge/ReScript-v11-e6484f.svg)](https://rescript-lang.org/)
-[![Rust](https://img.shields.io/badge/Rust-1.75%2B-orange.svg)](https://www.rust-lang.org/)
 [![CI](https://img.shields.io/badge/CI-GitLab%20%7C%20GitHub-blue)](.github/workflows/ci.yml)
 [![Security](https://img.shields.io/badge/security.txt-RFC%209116-informational)](.well-known/security.txt)
 
@@ -108,27 +105,12 @@ sudo mv rebar3 /usr/local/bin/
 git clone https://github.com/Hyperpolymath/safe-brute-force.git
 cd safe-brute-force
 
-# Compile all components (Erlang/LFE + ReScript + Rust)
-make compile
+# Compile
+rebar3 compile
 
-# Or compile individually:
-make compile-erlang   # LFE/Erlang only
-make compile-rescript # ReScript modules (requires Node.js)
-make compile-rust     # Rust NIFs (requires Cargo)
-
-# Run all tests
-make test
-
-# Or test individually:
-make test-erlang
-make test-rescript
-make test-rust
+# Run tests
+rebar3 lfe test
 ```
-
-**Dependencies**:
-- **Erlang/OTP 26+**: Core runtime
-- **Node.js 18+** (optional): For ReScript modules
-- **Rust 1.75+** (optional): For high-performance NIFs
 
 ### Quick Start
 
@@ -268,63 +250,41 @@ chmod +x sbf_cli
 
 ## 🏗️ Architecture
 
-SafeBruteForce implements the **iSOS (Integrated Sound Operating System)** multi-language architecture, combining the strengths of **Erlang/OTP**, **ReScript**, and **Rust** for maximum reliability and type safety:
+SafeBruteForce is built on **Erlang/OTP** principles for robustness and concurrency:
 
 ```
-┌────────────────────────────────────────────────────────────────┐
-│                    SafeBruteForce iSOS Stack                   │
-└────────────────────────────────────────────────────────────────┘
-
-┌──────────────────────┐
-│   LFE/Erlang/OTP     │  Orchestration & Concurrency
-│   Type Safety: 40%   │  - Supervision trees (sbf_sup)
-│   Memory Safe: ✅    │  - State machine (sbf_state)
-└──────────┬───────────┘  - Worker pool (sbf_executor)
-           │
-           ├─────────────────────────────────────────────┐
-           │                                             │
-           ▼                                             ▼
-┌──────────────────────┐                    ┌───────────────────────┐
-│   ReScript (v11)     │                    │   Rust (1.75+)        │
-│   Type Safe: 100% ✅ │                    │   Type Safe: 100% ✅  │
-│   Memory Safe: 100%  │                    │   Memory Safe: 100% ✅│
-└──────────────────────┘                    └───────────────────────┘
-│ Pattern Generation   │                    │ Performance NIFs      │
-│ - Type-safe combos   │                    │ - Parallel processing │
-│ - Mutations          │                    │ - Multi-core support  │
-└──────────────────────┘                    └───────────────────────┘
+┌─────────────────────────────────────────────────┐
+│              sbf_app (Application)              │
+└───────────────────┬─────────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────────────┐
+│             sbf_sup (Supervisor)                │
+│  ┌───────────────────┬──────────────────────┐   │
+│  │                   │                      │   │
+│  ▼                   ▼                      ▼   │
+│ sbf_state        sbf_executor         (future)  │
+│ (gen_statem)     (gen_server)                   │
+└─────────────────────────────────────────────────┘
+         │                   │
+         ▼                   ▼
+    State Machine      Worker Pool
+    - running          - Pattern execution
+    - paused           - Rate limiting
+    - waiting          - Result tracking
 ```
 
-**Overall Type Safety**: 60-80% (weighted by criticality)
-
-### Core Modules (Erlang/LFE Layer)
+### Core Modules
 
 - **sbf.lfe**: High-level API and main entry point
 - **sbf_state.lfe**: State machine for pause/resume logic (gen_statem)
 - **sbf_executor.lfe**: Execution engine with worker pool (gen_server)
-- **sbf_patterns.lfe**: Pattern generation strategies (with ReScript integration)
+- **sbf_patterns.lfe**: Pattern generation strategies
 - **sbf_output.lfe**: Result filtering and formatting
 - **sbf_checkpoint.lfe**: Save/restore functionality
 - **sbf_logger.lfe**: Structured logging
 - **sbf_progress.lfe**: Progress tracking and ETA
 - **sbf_rate_limiter.lfe**: Token bucket rate limiting
-
-### Type-Safe Modules (ReScript)
-
-- **rescript_modules/PatternGenerator.res**: 100% type-safe pattern generation
-  - Charset combinations with exhaustive pattern matching
-  - Mutation engine with type-safe transformations
-  - No null/undefined - sound type system
-
-### Performance Modules (Rust NIFs)
-
-- **rust_nif/lib.rs**: High-performance, memory-safe pattern generation
-  - Parallel processing with Rayon
-  - Zero-copy optimizations
-  - 100% type and memory safety (ownership system)
-  - Zero unsafe blocks
-
-**See**: [docs/MULTI_LANGUAGE_ARCHITECTURE.md](docs/MULTI_LANGUAGE_ARCHITECTURE.md) for detailed architecture documentation
 
 ## ⚖️ Legal and Ethical Use
 

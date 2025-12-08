@@ -1,63 +1,25 @@
-.PHONY: all compile clean test repl help deps check compile-erlang compile-rescript compile-rust test-erlang test-rescript test-rust
+.PHONY: all compile clean test repl help deps check
 
 all: compile
 
 ## Build and Development Commands
 
-compile: compile-erlang compile-rescript compile-rust
-	@echo "All components compiled successfully!"
-
-compile-erlang: deps
-	@echo "Compiling Erlang/LFE modules..."
+compile: deps
+	@echo "Compiling SafeBruteForce..."
 	@rebar3 compile
-
-compile-rescript:
-	@echo "Compiling ReScript modules..."
-	@cd rescript_modules && npm install && npm run build
-
-compile-rust:
-	@echo "Compiling Rust NIF..."
-	@cd rust_nif && cargo build --release
-	@mkdir -p priv
-	@cp rust_nif/target/release/libsbf_nif.so priv/sbf_nif.so || \
-	 cp rust_nif/target/release/libsbf_nif.dylib priv/sbf_nif.so || \
-	 echo "Note: Rust NIF compilation optional for development"
 
 deps:
 	@echo "Fetching dependencies..."
 	@rebar3 get-deps
 
-clean: clean-erlang clean-rescript clean-rust
-	@echo "All build artifacts cleaned!"
-
-clean-erlang:
-	@echo "Cleaning Erlang/LFE artifacts..."
+clean:
+	@echo "Cleaning build artifacts..."
 	@rebar3 clean
 	@rm -rf _build ebin
 
-clean-rescript:
-	@echo "Cleaning ReScript artifacts..."
-	@cd rescript_modules && npm run clean 2>/dev/null || rm -rf lib node_modules
-
-clean-rust:
-	@echo "Cleaning Rust artifacts..."
-	@cd rust_nif && cargo clean 2>/dev/null || true
-	@rm -f priv/sbf_nif.so
-
-test: test-erlang test-rescript test-rust
-	@echo "All tests completed!"
-
-test-erlang:
-	@echo "Running Erlang/LFE tests..."
+test:
+	@echo "Running tests..."
 	@rebar3 lfe test
-
-test-rescript:
-	@echo "Running ReScript tests..."
-	@cd rescript_modules && npm test 2>/dev/null || echo "ReScript tests not configured yet"
-
-test-rust:
-	@echo "Running Rust tests..."
-	@cd rust_nif && cargo test 2>/dev/null || echo "Rust tests optional for development"
 
 test-coverage:
 	@echo "Running tests with coverage..."
@@ -121,21 +83,15 @@ clean-all: clean clean-checkpoints clean-logs
 ## Help
 
 help:
-	@echo "SafeBruteForce - Makefile Commands (Multi-Language iSOS Stack)"
+	@echo "SafeBruteForce - Makefile Commands"
 	@echo ""
 	@echo "Build Commands:"
-	@echo "  make compile        - Compile all components (Erlang + ReScript + Rust)"
-	@echo "  make compile-erlang - Compile only Erlang/LFE modules"
-	@echo "  make compile-rescript - Compile only ReScript modules"
-	@echo "  make compile-rust   - Compile only Rust NIF"
+	@echo "  make compile        - Compile the project"
 	@echo "  make deps           - Fetch dependencies"
-	@echo "  make clean          - Clean all build artifacts"
+	@echo "  make clean          - Clean build artifacts"
 	@echo ""
 	@echo "Testing:"
-	@echo "  make test           - Run all tests (Erlang + ReScript + Rust)"
-	@echo "  make test-erlang    - Run only Erlang/LFE tests"
-	@echo "  make test-rescript  - Run only ReScript tests"
-	@echo "  make test-rust      - Run only Rust tests"
+	@echo "  make test           - Run all tests"
 	@echo "  make test-coverage  - Run tests with coverage"
 	@echo "  make check          - Run tests and static analysis"
 	@echo ""
