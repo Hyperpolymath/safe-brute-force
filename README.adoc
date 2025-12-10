@@ -1,4 +1,4 @@
-# 🔒 SafeBruteForce
+= 🔒 SafeBruteForce
 
 [![RSR Compliance](https://img.shields.io/badge/RSR-Bronze-cd7f32)](RSR_COMPLIANCE.md)
 [![TPCF Perimeter](https://img.shields.io/badge/TPCF-P3%20Community-green)](MAINTAINERS.md)
@@ -8,7 +8,7 @@
 [![CI](https://img.shields.io/badge/CI-GitLab%20%7C%20GitHub-blue)](.github/workflows/ci.yml)
 [![Security](https://img.shields.io/badge/security.txt-RFC%209116-informational)](.well-known/security.txt)
 
-A **controlled, ethical brute-force utility** designed for authorized security testing and penetration testing engagements. Unlike traditional brute-force tools that flood systems recklessly, SafeBruteForce prioritizes safety, user control, and system preservation.
+A *controlled, ethical brute-force utility* designed for authorized security testing and penetration testing engagements. Unlike traditional brute-force tools that flood systems recklessly, SafeBruteForce prioritizes safety, user control, and system preservation.
 
 ```
   ███████╗ █████╗ ███████╗███████╗    ██████╗ ███████╗
@@ -22,99 +22,99 @@ A **controlled, ethical brute-force utility** designed for authorized security t
   ⚠️  For Authorized Security Testing Only ⚠️
 ```
 
-## 🔍 Why SafeBruteForce?
+== 🔍 Why SafeBruteForce?
 
-Traditional brute-force tools are **reckless**:
+Traditional brute-force tools are *reckless*:
 - ❌ Flood systems with uncontrolled requests
 - ❌ Risk account lockouts and service disruption
 - ❌ Generate millions of lines of verbose output
 - ❌ No graceful pause or resume capability
 - ❌ Difficult to track progress
 
-SafeBruteForce **redefines brute-forcing** as a controlled, pausable process:
-- ✅ **Automatic safety pauses** every 25 attempts
-- ✅ **User confirmation** required to continue
-- ✅ **Clean, filtered output** - only see what matters
-- ✅ **Checkpoint/resume** for long operations
-- ✅ **Rate limiting** to respect system resources
-- ✅ **Progress tracking** with ETA calculations
-- ✅ **Concurrent architecture** using Erlang/OTP
+SafeBruteForce *redefines brute-forcing* as a controlled, pausable process:
+- ✅ *Automatic safety pauses* every 25 attempts
+- ✅ *User confirmation* required to continue
+- ✅ *Clean, filtered output* - only see what matters
+- ✅ *Checkpoint/resume* for long operations
+- ✅ *Rate limiting* to respect system resources
+- ✅ *Progress tracking* with ETA calculations
+- ✅ *Concurrent architecture* using Erlang/OTP
 
-## 📦 Features
+== 📦 Features
 
-### 🛑 Safety Mechanisms
+=== 🛑 Safety Mechanisms
 
-- **Automatic Pause**: Stops every 25 attempts, requires user confirmation
-- **Manual Controls**: Pause, resume, and check status at any time
-- **Rate Limiting**: Token bucket algorithm for controlled request rates
-- **Authorization Checks**: CLI prompts for explicit authorization
-- **Audit Logging**: Comprehensive activity logs for accountability
+- *Automatic Pause*: Stops every 25 attempts, requires user confirmation
+- *Manual Controls*: Pause, resume, and check status at any time
+- *Rate Limiting*: Token bucket algorithm for controlled request rates
+- *Authorization Checks*: CLI prompts for explicit authorization
+- *Audit Logging*: Comprehensive activity logs for accountability
 
-### 🔧 Pattern Generation
+=== 🔧 Pattern Generation
 
-- **Wordlists**: Load from files with optional mutations (leet speak, capitalization)
-- **Charset Combinations**: Generate all permutations from character sets
-- **Sequential Patterns**: Number ranges, dates, common formats
-- **Custom Generators**: Implement your own pattern strategies
-- **Built-in Recipes**: PIN codes, common passwords, hex colors
+- *Wordlists*: Load from files with optional mutations (leet speak, capitalization)
+- *Charset Combinations*: Generate all permutations from character sets
+- *Sequential Patterns*: Number ranges, dates, common formats
+- *Custom Generators*: Implement your own pattern strategies
+- *Built-in Recipes*: PIN codes, common passwords, hex colors
 
-### 🎯 Target Support
+=== 🎯 Target Support
 
-- **HTTP/HTTPS**: Test web login forms with custom headers and body formats
-- **Custom Functions**: Integrate with any validation logic
-- **Mock Targets**: Test functionality without external dependencies
-- **Extensible**: Easy to add new target types (SSH, FTP, etc.)
+- *HTTP/HTTPS*: Test web login forms with custom headers and body formats
+- *Custom Functions*: Integrate with any validation logic
+- *Mock Targets*: Test functionality without external dependencies
+- *Extensible*: Easy to add new target types (SSH, FTP, etc.)
 
-### 📊 Result Management
+=== 📊 Result Management
 
-- **Filtered Output**: See successes only, failures only, or all results
-- **Statistics Dashboard**: Attempts, success rate, elapsed time, rate per second
-- **Export Capabilities**: Save results to files for analysis
-- **Pattern Tracking**: Automatic recording of successful patterns
+- *Filtered Output*: See successes only, failures only, or all results
+- *Statistics Dashboard*: Attempts, success rate, elapsed time, rate per second
+- *Export Capabilities*: Save results to files for analysis
+- *Pattern Tracking*: Automatic recording of successful patterns
 
-### 🔄 Operational Features
+=== 🔄 Operational Features
 
-- **Checkpoints**: Auto-save and manual checkpoint creation
-- **Resume Capability**: Restore from checkpoints to continue interrupted sessions
-- **Progress Tracking**: Real-time progress bars with ETA
-- **Async Execution**: Run operations in background
-- **Supervision Trees**: OTP fault tolerance for reliability
+- *Checkpoints*: Auto-save and manual checkpoint creation
+- *Resume Capability*: Restore from checkpoints to continue interrupted sessions
+- *Progress Tracking*: Real-time progress bars with ETA
+- *Async Execution*: Run operations in background
+- *Supervision Trees*: OTP fault tolerance for reliability
 
-## 🚀 Getting Started
+== 🚀 Getting Started
 
-### Prerequisites
+=== Prerequisites
 
 ```bash
-# Erlang/OTP 26 or higher
-# Ubuntu/Debian:
+= Erlang/OTP 26 or higher
+= Ubuntu/Debian:
 sudo apt-get install erlang
 
-# macOS:
+= macOS:
 brew install erlang
 
-# Rebar3 (build tool)
+= Rebar3 (build tool)
 curl -O https://s3.amazonaws.com/rebar3/rebar3
 chmod +x rebar3
 sudo mv rebar3 /usr/local/bin/
 ```
 
-### Installation
+=== Installation
 
 ```bash
-# Clone the repository
+= Clone the repository
 git clone https://github.com/Hyperpolymath/safe-brute-force.git
 cd safe-brute-force
 
-# Compile
+= Compile
 rebar3 compile
 
-# Run tests
+= Run tests
 rebar3 lfe test
 ```
 
-### Quick Start
+=== Quick Start
 
-#### Interactive REPL (Recommended)
+==== Interactive REPL (Recommended)
 
 ```bash
 rebar3 lfe repl
@@ -149,26 +149,26 @@ rebar3 lfe repl
 > (sbf:stats)
 ```
 
-#### Command Line Interface
+==== Command Line Interface
 
 ```bash
-# Make CLI executable
+= Make CLI executable
 chmod +x sbf_cli
 
-# Test with wordlist
+= Test with wordlist
 ./sbf_cli wordlist priv/wordlists/common-passwords.txt \
           http://localhost/login admin
 
-# Test PIN codes
+= Test PIN codes
 ./sbf_cli pins http://localhost/api/verify
 
-# Generate charset combinations
+= Generate charset combinations
 ./sbf_cli charset "abc123" 4 6 http://localhost
 ```
 
-## 📖 Usage Examples
+== 📖 Usage Examples
 
-### Example 1: HTTP Login Testing
+=== Example 1: HTTP Login Testing
 
 ```lisp
 (let ((pattern-config
@@ -187,7 +187,7 @@ chmod +x sbf_cli
   (sbf:run pattern-config target-config))
 ```
 
-### Example 2: PIN Code Testing
+=== Example 2: PIN Code Testing
 
 ```lisp
 ;; Test all 4-digit PINs with custom validator
@@ -206,7 +206,7 @@ chmod +x sbf_cli
   (sbf:run pattern-config target-config))
 ```
 
-### Example 3: Custom Pattern Generation
+=== Example 3: Custom Pattern Generation
 
 ```lisp
 ;; Company-specific password patterns
@@ -229,7 +229,7 @@ chmod +x sbf_cli
   (sbf:run pattern-config target-config))
 ```
 
-### Example 4: Checkpoint Management
+=== Example 4: Checkpoint Management
 
 ```lisp
 ;; Start a long-running operation
@@ -248,9 +248,9 @@ chmod +x sbf_cli
 {ok, #{state => ...}}
 ```
 
-## 🏗️ Architecture
+== 🏗️ Architecture
 
-SafeBruteForce is built on **Erlang/OTP** principles for robustness and concurrency:
+SafeBruteForce is built on *Erlang/OTP* principles for robustness and concurrency:
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -274,30 +274,30 @@ SafeBruteForce is built on **Erlang/OTP** principles for robustness and concurre
     - waiting          - Result tracking
 ```
 
-### Core Modules
+=== Core Modules
 
-- **sbf.lfe**: High-level API and main entry point
-- **sbf_state.lfe**: State machine for pause/resume logic (gen_statem)
-- **sbf_executor.lfe**: Execution engine with worker pool (gen_server)
-- **sbf_patterns.lfe**: Pattern generation strategies
-- **sbf_output.lfe**: Result filtering and formatting
-- **sbf_checkpoint.lfe**: Save/restore functionality
-- **sbf_logger.lfe**: Structured logging
-- **sbf_progress.lfe**: Progress tracking and ETA
-- **sbf_rate_limiter.lfe**: Token bucket rate limiting
+- *sbf.lfe*: High-level API and main entry point
+- *sbf_state.lfe*: State machine for pause/resume logic (gen_statem)
+- *sbf_executor.lfe*: Execution engine with worker pool (gen_server)
+- *sbf_patterns.lfe*: Pattern generation strategies
+- *sbf_output.lfe*: Result filtering and formatting
+- *sbf_checkpoint.lfe*: Save/restore functionality
+- *sbf_logger.lfe*: Structured logging
+- *sbf_progress.lfe*: Progress tracking and ETA
+- *sbf_rate_limiter.lfe*: Token bucket rate limiting
 
-## ⚖️ Legal and Ethical Use
+== ⚖️ Legal and Ethical Use
 
-### ✅ Authorized Use Cases
+=== ✅ Authorized Use Cases
 
-- Penetration testing with **written authorization**
+- Penetration testing with *written authorization*
 - CTF (Capture The Flag) competitions
-- Security research on **systems you own**
+- Security research on *systems you own*
 - Educational demonstrations in controlled environments
 - Password policy validation for your organization
 - Red team exercises with proper scoping
 
-### ❌ Prohibited Use Cases
+=== ❌ Prohibited Use Cases
 
 - Unauthorized access to third-party systems
 - Credential stuffing or account takeover attacks
@@ -306,39 +306,39 @@ SafeBruteForce is built on **Erlang/OTP** principles for robustness and concurre
 - Mass distributed attacks
 - Any illegal or unethical activities
 
-### 📋 Legal Compliance
+=== 📋 Legal Compliance
 
 Be aware of applicable laws in your jurisdiction:
-- **CFAA (USA)**: Computer Fraud and Abuse Act
-- **GDPR (EU)**: Data protection regulations
-- **DMCA (USA)**: Anti-circumvention provisions
-- **Local laws**: Vary by country and state
+- *CFAA (USA)*: Computer Fraud and Abuse Act
+- *GDPR (EU)*: Data protection regulations
+- *DMCA (USA)*: Anti-circumvention provisions
+- *Local laws*: Vary by country and state
 
-**⚠️ IMPORTANT**: Violation of these laws can result in criminal prosecution and civil liability. Always obtain written authorization before testing any system.
+*⚠️ IMPORTANT*: Violation of these laws can result in criminal prosecution and civil liability. Always obtain written authorization before testing any system.
 
-## 📚 Documentation
+== 📚 Documentation
 
-- **[Usage Guide](docs/USAGE.md)**: Comprehensive usage instructions
-- **[Security Best Practices](docs/SECURITY.md)**: Legal and ethical guidelines
-- **[Contributing Guide](docs/CONTRIBUTING.md)**: How to contribute
-- **[CLAUDE.md](CLAUDE.md)**: AI assistant guidance for development
+- *[Usage Guide](docs/USAGE.md)*: Comprehensive usage instructions
+- *[Security Best Practices](docs/SECURITY.md)*: Legal and ethical guidelines
+- *[Contributing Guide](docs/CONTRIBUTING.md)*: How to contribute
+- *[CLAUDE.md](CLAUDE.md)*: AI assistant guidance for development
 
-## 🧪 Testing
+== 🧪 Testing
 
 ```bash
-# Run all tests
+= Run all tests
 rebar3 lfe test
 
-# Run with coverage
+= Run with coverage
 rebar3 lfe test --cover
 
-# Run specific test module
+= Run specific test module
 rebar3 lfe test --module=sbf_patterns_tests
 ```
 
-## 🗺️ Roadmap
+== 🗺️ Roadmap
 
-### v0.2.0 (Planned)
+=== v0.2.0 (Planned)
 - [ ] SSH brute-force module
 - [ ] FTP support
 - [ ] Database connection testing
@@ -346,28 +346,28 @@ rebar3 lfe test --module=sbf_patterns_tests
 - [ ] Web UI dashboard
 - [ ] Enhanced reporting (PDF, HTML)
 
-### v0.3.0 (Future)
+=== v0.3.0 (Future)
 - [ ] Machine learning pattern generation
 - [ ] Cloud integration (AWS, GCP, Azure)
 - [ ] SIEM integration
 - [ ] Custom plugin system
 - [ ] Performance optimizations
 
-## 🤝 Contributing
+== 🤝 Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines.
 
-### Contributors
+=== Contributors
 
 - [Hyperpolymath](https://github.com/Hyperpolymath) - Creator and maintainer
 
-## 📜 License
+== 📜 License
 
 MIT License - See [LICENSE](LICENSE) for details.
 
-**Note**: While the software is open source, users are responsible for ensuring their use complies with all applicable laws and regulations.
+*Note*: While the software is open source, users are responsible for ensuring their use complies with all applicable laws and regulations.
 
-## ⚠️ Disclaimer
+== ⚠️ Disclaimer
 
 SafeBruteForce is a powerful security testing tool. Use responsibly and ethically.
 
@@ -378,11 +378,11 @@ Improper use may result in:
 - Ethical violations
 - Damage to professional reputation
 
-**The authors and contributors are not responsible for misuse of this software.**
+*The authors and contributors are not responsible for misuse of this software.*
 
-## 🛡️ Safety First
+== 🛡️ Safety First
 
-This project maintains the principle of **"Safety First"**:
+This project maintains the principle of *"Safety First"*:
 
 1. ✅ Automatic pause mechanism (cannot be fully disabled)
 2. ✅ Authorization verification in CLI
@@ -392,20 +392,20 @@ This project maintains the principle of **"Safety First"**:
 6. ✅ Responsible disclosure guidelines
 7. ✅ Ethical use documentation
 
-## 📞 Support
+== 📞 Support
 
-- **Documentation**: Check the `docs/` directory
-- **Issues**: [GitHub Issues](https://github.com/Hyperpolymath/safe-brute-force/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/Hyperpolymath/safe-brute-force/discussions)
-- **Security**: See [SECURITY.md](docs/SECURITY.md) for responsible disclosure
+- *Documentation*: Check the `docs/` directory
+- *Issues*: [GitHub Issues](https://github.com/Hyperpolymath/safe-brute-force/issues)
+- *Discussions*: [GitHub Discussions](https://github.com/Hyperpolymath/safe-brute-force/discussions)
+- *Security*: See [SECURITY.md](docs/SECURITY.md) for responsible disclosure
 
-## 🙏 Acknowledgments
+== 🙏 Acknowledgments
 
-- **LFE Community**: For the amazing Lisp Flavored Erlang
-- **Erlang/OTP**: For the robust concurrency platform
-- **Security Researchers**: For ethical hacking practices
-- **Contributors**: Everyone who helps improve this tool
+- *LFE Community*: For the amazing Lisp Flavored Erlang
+- *Erlang/OTP*: For the robust concurrency platform
+- *Security Researchers*: For ethical hacking practices
+- *Contributors*: Everyone who helps improve this tool
 
 ---
 
-**Remember**: With great power comes great responsibility. Use SafeBruteForce ethically and legally. 🛡️
+*Remember*: With great power comes great responsibility. Use SafeBruteForce ethically and legally. 🛡️
